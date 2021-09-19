@@ -17,7 +17,9 @@ def pack(W, weights):
     return memo_table[-1][-1]
 
 
-if __name__ == "__main__":
+def main():
     cap = int(input("Enter capacity: "))
     w = [int(x) for x in input("Enter weight of bars: ").split()]
     print("Result: " + str(pack(cap, w)))
+
+main()

@@ -5,7 +5,7 @@ symbol = ("number", "function")
 #number = true, sign = false
 
 
-def is_legal_statement(expression, symb)->bool:
+def is_legal_statement(expression, symb):
     if len(expression) == 0:
         return True
     elif expression[0] in number and symb == True:
@@ -23,8 +23,8 @@ def main():
     if len(user_string) > 2:
         if is_legal_statement(user_string, True):
             print("(True,", eval(''.join(user_string)), ")")
-    else:
-        print("(False,None)")
+        else:
+            print("(False,None)")
 
 
 main()

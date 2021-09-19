@@ -8,7 +8,11 @@ words_to_symbols = {
 
 def parse_and_eval():
     # Turn words into the equivalent formula
-    operation = ''.join(sys.argv[2] + words_to_symbols[sys.argv[1]] + sys.argv[3])
-    print(eval(operation))
+    try:
+        operation = ''.join(sys.argv[2] + words_to_symbols[sys.argv[1]] + sys.argv[3])
+        print(eval(operation))
+    except Exception:
+        print("exeption")
 
-parse_and_eval()  
+
+parse_and_eval()
