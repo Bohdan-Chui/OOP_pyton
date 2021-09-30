@@ -8,5 +8,3 @@ else:
         print(result)
     except Exception:
         print("exeption")
-
-

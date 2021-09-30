@@ -14,6 +14,10 @@ def pack(W, weights):
                 memo_table[i][j] = max(weights[i-1] + memo_table[i-1][j-weights[i-1]], memo_table[i-1][j])
             else:
                 memo_table[i][j] = memo_table[i-1][j]
+    # for i in range(0, rows):
+    #     for j in range(0, cols):
+    #         print(memo_table[i][j], end=' ')
+    #     print()
     return memo_table[-1][-1]
 
 
