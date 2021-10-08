@@ -1,16 +1,41 @@
-from Customer import Customer
 from Store import Store
-
+from Customer import Customer
 
 class Order:
 
     def __init__(self, user, *args):
-        self.__user = user
-        self.__products = args
+        self.user = user
+        self.products = args
 
-    def print_orders(self):
-        for i in self.__products:
-            print (i)
+    @property
+    def user(self):
+        return self.__user
+
+    @user.setter
+    def user(self, user):
+        if isinstance(user, Customer):
+            self.__user = user
+        else:
+            raise TypeError('User must be Customer type')
+
+    @property
+    def products(self):
+        return self.__products
+
+    @products.setter
+    def products(self, products):
+        if any(not isinstance(product, Store) for product in products):
+            raise TypeError("Products must be of Product type")
+        self.__products = list(products)
+
+    def add_product(self, product):
+        if isinstance(product, Store):
+            self.__products.append(product)
+        else:
+            raise TypeError('Product must be Store type')
+
+    def dell_product(self, product):
+        self.products.remove(product)
 
     def total_order_value(self):
         total = 0
@@ -18,9 +43,7 @@ class Order:
             total += price.get_price()
         return total
 
-# if __name__ == '__main__':
-#     try:
-#         order = Order(Customer(),Store(12.3,"Phone", 12), Store(12.3,"Phone", 12), Store(12.3,"Phone", 12))
-#         print(order.total_order_value())
-#     except Exception as ve:
-#         print(ve)
+    # def __str__(self):
+    #     return
+
+

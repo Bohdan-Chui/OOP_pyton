@@ -1,47 +1,63 @@
+import re
+
+
 class Customer:
 
-    def __init__(self, name="Bohdan", surname="Chuy", patronymic="Serhiovich", mobile="380633129708"):
-        try:
-            self.set_name(name)
-            self.set_surname(surname)
-            self.set_patronymic(patronymic)
-            self.set_mobile(mobile)
-        except Exception as ve:
-            print(ve)
+    def __init__(self, name = 'Unknown', surname = 'Unknown', patronymic = 'Unknown', mobile = '+380(00)-000-00-00'):
+            self.name = name
+            self.surname = surname
+            self.patronymic = patronymic
+            self.mobile = mobile
 
-    def set_name(self, name):
-        if isinstance(name, str):
+    @property
+    def name(self):
+        return self.__name
+
+    @name.setter
+    def name(self, name):
+        if not isinstance(name, str):
+            raise TypeError("name must be a string")
+        if name and name.strip():
             self.__name = name
         else:
-            raise TypeError("name must be a string")
+            raise TypeError("name customer is empty")
 
-    def set_surname(self, surname):
-        if isinstance(surname, str):
+    @property
+    def surname(self):
+        return self.__surname
+
+    @surname.setter
+    def surname(self, surname):
+        if not isinstance(surname, str):
+            raise TypeError("surname must be a string")
+        if surname and surname.strip():
             self.__surname = surname
         else:
-            raise TypeError("surname must be a string")
+            raise TypeError("surname is empty")
 
-    def set_patronymic(self, patronymic):
-        if isinstance(patronymic, str):
+    @property
+    def patronymic(self):
+        return self.__patronymic
+
+    @patronymic.setter
+    def patronymic(self, patronymic):
+        if not isinstance(patronymic, str):
+            raise TypeError("patronymic must be a string")
+        if patronymic.strip():
             self.__patronymic = patronymic
         else:
-            raise TypeError("patronymic must be a string")
+            raise TypeError("patronymic is empty")
 
-    def set_mobile(self, mobile):
-        if self.validNumber(mobile):
-            self.__mobile = mobile
-        else:
-            raise TypeError("not valide mobile number")
+    @property
+    def mobile(self):
+        return self.mobile
 
-    def validNumber(self, phone_number):
-        if len(phone_number) != 12:
-            return False
-        for i in phone_number:
-            int(i)
-            if i in [0, 10]:
-                if not phone_number[i].isalnum():
-                    return False
-        return True
+    @mobile.setter
+    def mobile(self, mobile):
+        pattern = re.compile("^\\+[0-9]{3}\\((\\d{2})\\)-\\d{3}-\\d{2}-\\d{2}")
+        if not pattern.match(mobile):
+            raise ValueError
+        self.__phone_number = mobile
 
     def get_name(self):
         return self.__name

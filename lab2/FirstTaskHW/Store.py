@@ -1,25 +1,41 @@
 class Store:
-    def __init__(self, price=0.0, description = '', dimenshion = 0):
-        try:
-            self.set_price(price)
-            self.set_description(description)
-            self.set_dimenshoin(dimenshion)
-        except Exception as ve:
-            print(ve)
 
-    def set_price(self, price):
+    def __init__(self, price = 0.0, description = ' ', dimenshion = 0.0):
+            self.price = price
+            self.descriprion = description
+            self.dimenshion = dimenshion
+
+    @property
+    def price(self):
+        return self.__price
+
+    @price.setter
+    def price(self, price):
         if isinstance(price, float) or  isinstance(price, int):
             self.__price = price
         else:
             raise TypeError("price must be digit")
 
-    def set_description(self, description):
-        if isinstance(description, str):
+    @property
+    def description(self):
+        return self.__description
+
+
+    @description.setter
+    def descriprion(self, description = 'default description'):
+        if not isinstance(description, str):
+            raise TypeError("description must be a string")
+        if description and description.strip():
             self.__descriprion = description
         else:
-            raise TypeError("description must be a string")
+            raise TypeError("description is empty")
 
-    def set_dimenshoin(self, dimenshion):
+    @property
+    def dimenshion(self):
+        return self.__dimenshion
+
+    @dimenshion.setter
+    def dimenshion(self, dimenshion = 0):
         if isinstance(dimenshion, float) or  isinstance(dimenshion, int):
             self.__dimenshion = dimenshion
         else:
@@ -36,18 +52,3 @@ class Store:
 
     def __str__(self) -> str:
         return "descriprion: " + self.__descriprion + " \nprice: " + str(self.__price) + " \ndimenshion: " + str(self.__dimenshion)
-
-
-# if __name__ == '__main__':
-#     try:
-#         phone = Store(10,"Phone", 12)
-#         print(phone.store_to_str())
-#
-#         tablet = Store(14, "Tablet", 15)
-#         print(tablet.store_to_str())
-#
-#         store = Store("loh", "Phone", 12)
-#         print(store.store_to_str())
-#
-#     except Exception as ev:
-#         print(ev)

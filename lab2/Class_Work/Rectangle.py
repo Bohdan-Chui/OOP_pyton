@@ -1,11 +1,10 @@
 class Rectangle:
 
-    def __init__(self, lenght = 1.0, hight = 1.0):
+    def __init__(self, lenght, hight):
         self.set_lenght(lenght)
         self.set_hight(hight)
 
-
-    def set_lenght(self, lenght):
+    def set_lenght(self, lenght = 1.0):
             if isinstance(lenght, float):
                 if  0 < lenght < 20:
                     self.__lenght = lenght
@@ -14,8 +13,7 @@ class Rectangle:
             else:
                 raise TypeError("illegal type lenght")
 
-
-    def set_hight(self, hight):
+    def set_hight(self, hight = 1.0):
         if isinstance(hight, float):
             if 0 < hight < 20:
                 self.__hight = hight
