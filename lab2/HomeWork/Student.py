@@ -1,12 +1,16 @@
+"""
+    This class implement student entity
+    STUDENT contains the student's name, surname, record book number and grades.
+"""
+
 class Student:
-    __slots__ = ['name', 'surname', 'record_book_number', 'grades']
 
     __count = 0
 
     def __init__(self, name, surname, grades):
         self.name = name
         self.surname = surname
-        self.grades = grades
+        self.grades = dict(grades)
         Student.__count += 1
 
     @classmethod
@@ -46,19 +50,25 @@ class Student:
     @grades.setter
     def grades(self, grades):
         if not isinstance(grades, dict):
-            raise TypeError('grades must be of type dict')
-        if any(not isinstance(key, str) for key in grades.keys()):
-            raise TypeError('grade\'s key must be of type str')
-        if any(not isinstance(value, int) for value in grades.values()):
-            raise TypeError('grade\'s value must be of type int')
-        if any(value < 0 or value > 100 for value in grades.values()):
-            raise ValueError('grade must be in range(0, 101)')
+            raise TypeError('Grades must be dict type')
+        if not any(isinstance(key, str) for key in grades.keys()):
+            raise TypeError('Keys must be str type')
+        if not any(isinstance(value, int) for value in grades.values()):
+            raise TypeError('Values must be int type')
         self.__grades = grades
 
-    def __eq__(self, o: object) -> bool:
-        return super().__eq__(o)
+    def get_average(self):
+        return sum(self.__grades.values()) / len(self.__grades)
+
+    def __eq__(self, other):
+        if isinstance(other, Student):
+            return (self.name, self.surname) == (other.name, other.surname)
+        return  False
 
     def __str__(self) -> str:
         return f'Student [ name = {self.name}, surname = {self.surname}, grades = {self.grades}]'
+
+    def __hash__(self) -> int:
+        return hash(self.name) + hash(self.surname)
 
 

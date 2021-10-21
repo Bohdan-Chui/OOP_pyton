@@ -1,6 +1,5 @@
 from math import gcd
 
-
 class Rational:
     def __init__(self, numerator = 0, denumerator = 1):
         if  not isinstance(denumerator, int):
@@ -11,14 +10,14 @@ class Rational:
             raise ZeroDivisionError("denumerator == 0")
 
         divisor = gcd(numerator,denumerator)
-        self.__numerator = int(numerator / divisor)
-        self.__denumerator = int(denumerator / divisor)
+        self.__numerator = numerator // divisor
+        self.__denumerator = denumerator // divisor
 
     def to_str(self) -> str:
         return str(self.__numerator) + "/" + str(self.__denumerator)
 
     def to_float_format(self) -> float:
-        return float(self.__numerator), float(self.__denumerator)
+        return self.__numerator / self.__denumerator
 
 
 if __name__ == '__main__':

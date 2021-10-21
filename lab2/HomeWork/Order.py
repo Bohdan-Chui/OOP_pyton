@@ -1,6 +1,12 @@
 from Store import Store
 from Customer import Customer
 
+"""
+    Class contain data about the customer who carried it out and products. 
+    Implement a method for calculating the total order value.
+"""
+
+
 class Order:
 
     def __init__(self, user, *args):
@@ -45,5 +51,3 @@ class Order:
 
     # def __str__(self):
     #     return
-
-
