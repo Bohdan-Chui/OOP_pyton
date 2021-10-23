@@ -25,7 +25,7 @@ class Group:
             raise ValueError('a lot of students')
         self.__students = list(students)
 
-    def add_student(self, student):
+    def add_students(self, student):
         students = list(student)
         if not all(isinstance(student, Student) for student in students):
             raise TypeError('Students must be a list of Studens')
