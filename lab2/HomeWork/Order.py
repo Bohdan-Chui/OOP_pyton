@@ -49,5 +49,3 @@ class Order:
             total += price.get_price()
         return total
 
-    # def __str__(self):
-    #     return
