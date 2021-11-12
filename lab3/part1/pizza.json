@@ -1,0 +1,67 @@
+{
+    "pizza": [
+        {
+            "day": "Monday",
+            "name": "4cheeses",
+            "price": 12,
+            "ingredients": [
+                "Cheese",
+                "rogfort"
+            ]
+        },
+        {
+            "day": "Tuesday",
+            "name": "Americano",
+            "price": 12,
+            "ingredients": [
+                "sausage",
+                "bbq souse"
+            ]
+        },
+        {
+            "day": "Wednesday",
+            "name": "Margarita",
+            "price": 12,
+            "ingredients": [
+                "tomats",
+                "basilica"
+            ]
+        },
+        {
+            "day": "Thursday",
+            "name": "Diablo",
+            "price": 12,
+            "ingredients": [
+                "prosciutto",
+                "beacon"
+            ]
+        },
+        {
+            "day": "Friday",
+            "name": "Pepperoni",
+            "price": 12,
+            "ingredients": [
+                "rogfort",
+                "sausage"
+            ]
+        },
+        {
+            "day": "Saturday",
+            "name": "Bavarian",
+            "price": 12,
+            "ingredients": [
+                "Cheese",
+                "beacon"
+            ]
+        },
+        {
+            "day": "Sunday",
+            "name": "Rancho",
+            "price": 12,
+            "ingredients": [
+                "meat",
+                "tomates"
+            ]
+        }
+    ]
+}
