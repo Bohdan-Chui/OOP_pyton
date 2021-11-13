@@ -1,0 +1,19 @@
+{
+    "event": [
+        {
+            "name": "1event",
+            "date": "2002-12-12",
+            "regular_price": 120
+        },
+        {
+            "name": "1event",
+            "date": "2002-12-12",
+            "regular_price": 120
+        },
+        {
+            "name": "1event",
+            "date": "2002-12-12",
+            "regular_price": 120
+        }
+    ]
+}

@@ -1,0 +1,25 @@
+{
+    "ticket": [
+        {
+            "type": "regular",
+            "number": 1,
+            "visitor": "Hello",
+            "event_date": "2002-12-12",
+            "price": 120
+        },
+        {
+            "type": "student",
+            "number": 2,
+            "visitor": "Vitia",
+            "event_date": "2002-12-12",
+            "price": 60.0
+        },
+        {
+            "type": "student",
+            "number": 3,
+            "visitor": "bohdan",
+            "event_date": "2002-12-12",
+            "price": 60.0
+        }
+    ]
+}
