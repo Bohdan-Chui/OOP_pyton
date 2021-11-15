@@ -9,5 +9,4 @@ def main():
     ticketmanaget = TicketManager()
     eventmanager = EventManager()
     ticketmanaget.buy_ticket(event)
-    print(ticketmanaget.get_ticket_by_number(2))
 main()

@@ -1,6 +1,6 @@
 import json
 from Event import Event
-from datetime import datetime
+from datetime import datetime, date
 
 
 class EventManager:
@@ -24,8 +24,9 @@ class EventManager:
     def add_event(self, event):
         if not isinstance(event, Event):
             TypeError('not Event type')
+        if (event.date_event - date.today()).days < 0:
+            raise ValueError('date isn`t true')
         self.__data['event'].append(self.__encoder(event))
-        print(self.data)
         with open('event.json', 'w') as file:
             json.dump(self.__data, file, indent = 4)
 

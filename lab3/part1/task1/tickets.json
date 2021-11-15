@@ -1,23 +1,23 @@
 {
     "ticket": [
         {
-            "type": "regular",
+            "type": "late",
             "number": 1,
-            "visitor": "Hello",
+            "visitor": "b",
             "event_date": "2002-12-12",
-            "price": 120
+            "price": 132.0
         },
         {
             "type": "student",
             "number": 2,
-            "visitor": "Vitia",
+            "visitor": "djhdan",
             "event_date": "2002-12-12",
             "price": 60.0
         },
         {
             "type": "student",
             "number": 3,
-            "visitor": "bohdan",
+            "visitor": "y",
             "event_date": "2002-12-12",
             "price": 60.0
         }

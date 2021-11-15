@@ -5,7 +5,16 @@ from  datetime import datetime
 
 class TicketManager:
     def __init__(self):
-        self.data = {'ticket': []}
+        self._load_tickets()
+
+    @property
+    def data(self):
+        return self.__data
+
+    def _load_tickets(self):
+        with open('tickets.json') as file:
+            self.__data = json.load(file)
+
 
     def __get_tickets_number(self):
         number = 0
@@ -15,7 +24,7 @@ class TicketManager:
                 number+=1
             return  number
 
-    def __get_ticket(ticket):
+    def get_ticket(ticket):
         type = ticket['type']
         number = ticket['number']
         visitor = ticket['visitor']
@@ -63,7 +72,7 @@ class TicketManager:
             data = json.load(file)
             for p in data['ticket']:
                 if p['number'] == number:
-                    return TicketManager.__get_ticket(p)
+                    return TicketManager.get_ticket(p)
 
     def __buy_ticket(self, type,number, visitor, event_date, price):
         if type == 'regular':
