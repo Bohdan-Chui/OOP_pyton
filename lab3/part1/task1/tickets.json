@@ -4,22 +4,29 @@
             "type": "late",
             "number": 1,
             "visitor": "b",
-            "event_date": "2002-12-12",
+            "event_date": "2021-12-12",
             "price": 132.0
         },
         {
             "type": "student",
             "number": 2,
             "visitor": "djhdan",
-            "event_date": "2002-12-12",
+            "event_date": "2021-12-12",
             "price": 60.0
         },
         {
             "type": "student",
             "number": 3,
             "visitor": "y",
-            "event_date": "2002-12-12",
+            "event_date": "2021-12-12",
             "price": 60.0
+        },
+        {
+            "type": "regular",
+            "number": 4,
+            "visitor": "user1",
+            "event_date": "2021-12-12",
+            "price": 120
         }
     ]
 }

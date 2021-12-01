@@ -5,8 +5,8 @@ from datetime import date
 from EventManager import EventManager
 
 def main():
-    event = Event('1event', date(2002, 12, 12), 120)
+    event = Event('2event', date(2021, 12, 12), 120)
     ticketmanaget = TicketManager()
-    eventmanager = EventManager()
+    # eventmanager = EventManager()
     ticketmanaget.buy_ticket(event)
 main()
