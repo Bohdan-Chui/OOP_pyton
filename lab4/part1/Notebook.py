@@ -26,7 +26,7 @@ class Notebook:
     def __add__(self, person):
         if not isinstance(person, Person):
             raise TypeError("isn`t person type")
-        print(person)
+        # print(person)
         insert_query =  f'INSERT INTO user (name, surname, number, birthday) VALUES(%s,%s,%s,%s)'
         with self.__connection.cursor() as cursor:
             cursor.execute(insert_query,(person.name, person.surname, person.mobile, person.birthday))
@@ -35,7 +35,6 @@ class Notebook:
     def __sub__(self, name):
         if not isinstance(name, str):
             raise TypeError("isn`t person type")
-        print("delete " + name)
         delete_query = f"DELETE FROM user WHERE name = '%s' " % (name)
         with self.__connection.cursor() as cursor:
             cursor.execute(delete_query)
@@ -44,7 +43,6 @@ class Notebook:
     def __mul__(self, name):
         if not isinstance(name, str):
             raise TypeError("isn`t person type")
-        print("delete " + name)
         select_query = f"SELECT name, surname, number, birthday  FROM user WHERE name = '%s' " % (name)
         with self.__connection.cursor() as cursor:
             cursor.execute(select_query)
