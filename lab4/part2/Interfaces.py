@@ -3,7 +3,6 @@ from abc import ABC, abstractmethod
 
 class ICourse(ABC):
 
-
     @property
     @abstractmethod
     def name(self):
@@ -28,7 +27,6 @@ class ICourse(ABC):
     @abstractmethod
     def teacher(self, teacher):
         raise NotImplemented
-
 
     @topics.setter
     @abstractmethod
@@ -55,7 +53,6 @@ class ITeacher(ABC):
     def name(self):
         raise NotImplemented
 
-
     @property
     @abstractmethod
     def courses(self):
@@ -78,6 +75,7 @@ class ITeacher(ABC):
     @abstractmethod
     def __str__(self):
         raise NotImplemented
+
 
 class ILocalCourse(ABC):
 
@@ -108,7 +106,7 @@ class ICourseFactory(ABC):
         raise NotImplemented
 
     @abstractmethod
-    def createCourse(self,place, name, teacher, *args):
+    def createCourse(self, place, name, teacher, *args):
         raise NotImplemented
 
 

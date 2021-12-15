@@ -1,4 +1,4 @@
-from Interfaces import ICourse, ILocalCourse, ICourseFactory,ITeacherFactory, IOffsiteCourse, ITeacher
+from Interfaces import ICourse, ILocalCourse, ICourseFactory, ITeacherFactory, IOffsiteCourse, ITeacher
 from Database import Connector
 
 class Teacher(ITeacher):
@@ -39,6 +39,7 @@ class Teacher(ITeacher):
 
     def __str__(self):
         return f"Teacher: {self.name}"
+
 
 class Course(ICourse):
 
@@ -116,7 +117,8 @@ class TeacherFactory(ITeacherFactory):
             self.__connector.commit()
         return teacher
 
-class CourseFacroty(ICourseFactory):
+
+class CourseFactory(ICourseFactory):
 
     def __init__(self):
         self.__connector = Connector.connect()
@@ -132,18 +134,15 @@ class CourseFacroty(ICourseFactory):
             self.__connector.commit()
         return course
 
-if __name__ == '__main__':
 
+if __name__ == '__main__':
     teacherFactory = TeacherFactory()
     teacher = teacherFactory.createTeacher("myhailo")
 
-    courseFactory = CourseFacroty()
+    courseFactory = CourseFactory()
     cource = courseFactory.createCourse("local", "computerCourse", teacher, "Monitor", "Mouse")
     print(cource)
 
-    teacher.add_course(cource.name)
+    teacher.add_course(cource)
     print(teacher)
-
-
-
 

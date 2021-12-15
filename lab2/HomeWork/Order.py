@@ -48,4 +48,3 @@ class Order:
         for price in self.__products:
             total += price.get_price()
         return total
-
