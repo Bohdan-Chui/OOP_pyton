@@ -1,11 +1,11 @@
-from Clases import TeacherFactory, CourseFacroty
+from clases import TeacherFactory, CourseFactory
 if __name__ == '__main__':
 
     teacherFactory = TeacherFactory()
-    teacher = teacherFactory.createTeacher("myhailo")
+    teacher = teacherFactory.create_teacher("myhailo")
 
-    courseFactory = CourseFacroty()
-    cource = courseFactory.createCourse("local", "computerCourse", teacher, "Monitor", "Mouse")
+    courseFactory = CourseFactory()
+    cource = courseFactory.create_course("local", "computerCourse", teacher, "Monitor", "Mouse")
     print(cource)
 
     teacher.add_course(cource.name)

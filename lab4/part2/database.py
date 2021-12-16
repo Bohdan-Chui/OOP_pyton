@@ -6,9 +6,10 @@ user = "root"
 password = "root"
 dataBaseName = "python"
 
+
 class Connector:
 
-    def __init__(self) :
+    def __init__(self):
         self.__connection = Connector.connect()
 
     @staticmethod

@@ -106,7 +106,7 @@ class ICourseFactory(ABC):
         raise NotImplemented
 
     @abstractmethod
-    def createCourse(self, place, name, teacher, *args):
+    def create_course(self, place, name, teacher, *args):
         raise NotImplemented
 
 
@@ -117,5 +117,5 @@ class ITeacherFactory(ABC):
         raise NotImplemented
 
     @abstractmethod
-    def createTeacher(self, name, courses):
+    def create_teacher(self, name, courses):
         raise TypeError

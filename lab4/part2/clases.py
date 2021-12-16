@@ -1,9 +1,16 @@
-from Interfaces import ICourse, ILocalCourse, ICourseFactory, ITeacherFactory, IOffsiteCourse, ITeacher
-from Database import Connector
+from interfaces import ICourse, ILocalCourse, ICourseFactory, ITeacherFactory, IOffsiteCourse, ITeacher
+from database import Connector
+
 
 class Teacher(ITeacher):
+    """
+    Class contains teacher name and his courses
+    implements ITeacher interface
 
-    def __init__(self, name, courses = []):
+    :param name: The name of teacher
+    :param courses: Courses that head by teacher
+    """
+    def __init__(self, name, courses=[]):
         self.name = name
         self.courses = courses
 
@@ -42,6 +49,14 @@ class Teacher(ITeacher):
 
 
 class Course(ICourse):
+    """
+    Class implement course logics
+    Class implement ICourse interface
+
+    :param name: Name of course
+    :param teacher: Name of teacher
+    :param topics: topics of course
+    """
 
     def __init__(self, name, teacher, *args):
         self.name = name
@@ -69,7 +84,7 @@ class Course(ICourse):
     @teacher.setter
     def teacher(self, teacher):
         if not isinstance(teacher, Teacher):
-            raise TypeError("teacher isnot Teacher object")
+            raise TypeError("teacher is not Teacher object")
         self.__teacher = teacher
 
     @topics.setter
@@ -86,7 +101,12 @@ class Course(ICourse):
     def __str__(self):
         return f"Course ->  Name: {self.name}, teacher: {self.teacher}, topics: {self.topics}."
 
+
 class LocalCourse(Course, ILocalCourse):
+    """
+    Class contain information about local course
+    Implements Cource, ILocalCourse
+    """
 
     def __init__(self, name, teacher, *args):
         super().__init__(name, teacher, *args)
@@ -96,6 +116,10 @@ class LocalCourse(Course, ILocalCourse):
 
 
 class OffsiteCourse(Course, IOffsiteCourse):
+    """
+    Class contain information about offsite course
+    Implements Cource, ILocalCourse
+    """
 
     def __init__(self, name, teacher, *args):
         super().__init__(name, teacher, *args)
@@ -109,11 +133,17 @@ class TeacherFactory(ITeacherFactory):
     def __init__(self):
         self.__connector = Connector.connect()
 
-    def createTeacher(self, name, *courses):
+    def create_teacher(self, name, *courses):
+        """
+        Create teacher and save it
+        :return teacher
+        :raise SQLError
+        """
+
         teacher = Teacher(name, *courses)
-        insertQuery = f"INSERT INTO teacher (name) VALUES (%s) "
+        insert_query = f"INSERT INTO teacher (name) VALUES (%s) "
         with self.__connector.cursor() as cursor:
-            cursor.execute(insertQuery, (teacher.name, ))
+            cursor.execute(insert_query, (teacher.name, ))
             self.__connector.commit()
         return teacher
 
@@ -123,26 +153,20 @@ class CourseFactory(ICourseFactory):
     def __init__(self):
         self.__connector = Connector.connect()
 
-    def createCourse(self, place, name, teacher, *args):
+    def create_course(self, place, name, teacher, *args):
+        """
+        Create and return course
+        save course in database
+        :returns course
+        :raise SLQError
+        """
         if place == "local":
             course = LocalCourse(name, teacher, *args)
         if place == "offsite":
             course = OffsiteCourse(name, teacher, *args)
-        insertQuery = f"INSERT INTO course(name, teacher, topics) VALUES(%s,(SELECT id FROM teacher WHERE name = %s), %s)"
+        insert_query = f"INSERT INTO course(name, teacher, topics) " \
+                       f"VALUES(%s,(SELECT id FROM teacher WHERE name = %s), %s)"
         with self.__connector.cursor() as cursor:
-            cursor.execute(insertQuery, (course.name, course.teacher.name, ', '.join(course.topics)))
+            cursor.execute(insert_query, (course.name, course.teacher.name, ', '.join(course.topics)))
             self.__connector.commit()
         return course
-
-
-if __name__ == '__main__':
-    teacherFactory = TeacherFactory()
-    teacher = teacherFactory.createTeacher("myhailo")
-
-    courseFactory = CourseFactory()
-    cource = courseFactory.createCourse("local", "computerCourse", teacher, "Monitor", "Mouse")
-    print(cource)
-
-    teacher.add_course(cource)
-    print(teacher)
-
