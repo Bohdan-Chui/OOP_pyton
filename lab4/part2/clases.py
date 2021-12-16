@@ -10,20 +10,23 @@ class Teacher(ITeacher):
     :param name: The name of teacher
     :param courses: Courses that head by teacher
     """
-    def __init__(self, name, courses=[]):
+    def __init__(self, name: str, courses=[]):
         self.name = name
         self.courses = courses
 
     @property
     def name(self):
+        """name getter"""
         return self.__name
 
     @property
     def courses(self):
+        """courses getter"""
         return self.__courses
 
     @name.setter
-    def name(self, name):
+    def name(self, name: str):
+        """name setter"""
         if not isinstance(name, str):
             raise TypeError("name must be a string")
         if name and name.strip():
@@ -33,6 +36,7 @@ class Teacher(ITeacher):
 
     @courses.setter
     def courses(self, courses):
+        """courses setter"""
         if not isinstance(courses, list):
             raise TypeError("courses must be list type")
         if any(not isinstance(course, Course) for course in courses):
@@ -40,6 +44,7 @@ class Teacher(ITeacher):
         self.__courses = courses
 
     def add_course(self, course):
+        """function add course to teacher"""
         if not isinstance(course, Course):
             raise TypeError("not course type")
         self.__courses.append(course)
@@ -65,35 +70,42 @@ class Course(ICourse):
 
     @property
     def name(self):
+        """name getter"""
         return self.__name
 
     @property
     def teacher(self):
+        """teacher getter"""
         return self.__teacher
 
     @property
     def topics(self):
+        """topics getter"""
         return self.__topics
 
     @name.setter
-    def name(self, name):
+    def name(self, name: str):
+        """name setter"""
         if not isinstance(name, str):
             raise TypeError("name must be str")
         self.__name = name
 
     @teacher.setter
     def teacher(self, teacher):
+        """teacher setter"""
         if not isinstance(teacher, Teacher):
             raise TypeError("teacher is not Teacher object")
         self.__teacher = teacher
 
     @topics.setter
     def topics(self, topics):
+        """topics setter"""
         if any(not isinstance(topic, str) for topic in topics):
             raise TypeError("topic must be srt type")
         self.__topics = topics
 
     def add_topic(self, topic):
+        """add topic in course"""
         if not isinstance(topic, str):
             raise TypeError("topic must be str type")
         self.__topics.append(topic)
@@ -129,6 +141,9 @@ class OffsiteCourse(Course, IOffsiteCourse):
 
 
 class TeacherFactory(ITeacherFactory):
+    """
+    Class implements logic for teacher factory
+    """
 
     def __init__(self):
         self.__connector = Connector.connect()
@@ -148,6 +163,9 @@ class TeacherFactory(ITeacherFactory):
 
 
 class CourseFactory(ICourseFactory):
+    """
+     Class implements logic for course factory
+     """
 
     def __init__(self):
         self.__connector = Connector.connect()
