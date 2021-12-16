@@ -1,7 +1,7 @@
 from datetime import date
 
-from Notebook import Notebook
-from lab4.part1.Person import Person
+from notebook import Notebook
+from lab4.part1.person import Person
 
 if __name__ == '__main__':
     notebook = Notebook()

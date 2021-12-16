@@ -1,4 +1,4 @@
-from Rational import  Rational
+from rational import  Rational
 
 if __name__ == '__main__':
 

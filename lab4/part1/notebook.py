@@ -4,8 +4,8 @@ from datetime import datetime
 import mysql
 from mysql.connector import connect, Error
 
-from lab4.part1.DatabaseConfig import host, user, password, dataBaseName
-from lab4.part1.Person import Person
+from lab4.part1.database_config import host, user, password, dataBaseName
+from lab4.part1.person import Person
 
 
 class Notebook:

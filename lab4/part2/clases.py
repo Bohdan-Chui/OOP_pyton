@@ -105,7 +105,7 @@ class Course(ICourse):
 class LocalCourse(Course, ILocalCourse):
     """
     Class contain information about local course
-    Implements Cource, ILocalCourse
+    Implements Course, ILocalCourse
     """
 
     def __init__(self, name, teacher, *args):
@@ -118,7 +118,7 @@ class LocalCourse(Course, ILocalCourse):
 class OffsiteCourse(Course, IOffsiteCourse):
     """
     Class contain information about offsite course
-    Implements Cource, ILocalCourse
+    Implements Course, ILocalCourse
     """
 
     def __init__(self, name, teacher, *args):
@@ -139,7 +139,6 @@ class TeacherFactory(ITeacherFactory):
         :return teacher
         :raise SQLError
         """
-
         teacher = Teacher(name, *courses)
         insert_query = f"INSERT INTO teacher (name) VALUES (%s) "
         with self.__connector.cursor() as cursor:
@@ -162,8 +161,11 @@ class CourseFactory(ICourseFactory):
         """
         if place == "local":
             course = LocalCourse(name, teacher, *args)
-        if place == "offsite":
+        elif place == "offsite":
             course = OffsiteCourse(name, teacher, *args)
+        else:
+            raise ValueError("Place incorrect")
+
         insert_query = f"INSERT INTO course(name, teacher, topics) " \
                        f"VALUES(%s,(SELECT id FROM teacher WHERE name = %s), %s)"
         with self.__connector.cursor() as cursor:
